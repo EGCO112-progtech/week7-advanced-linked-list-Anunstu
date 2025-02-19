@@ -17,6 +17,7 @@ int isEmpty( LLPtr sPtr );
 void insert( LLPtr *sPtr, int value, char* nm);
 void printList( LLPtr currentPtr );
 void instructions( void );
+void clear_all_node( LLPtr currentPtr);
 
 
 // display program instructions to user
@@ -162,4 +163,31 @@ void printList( LLPtr currentPtr )
        
    } // end else
 } // end function printList
-void clear_all_node
+void clear_all_nodes(LLPtr *sPtr)
+{
+   LLPtr currentPtr; 
+   LLPtr tempPtr; 
+
+      printf("Clear all nodes\n");
+      tempPtr = *sPtr;
+      printf( "delete %d\n",( *sPtr )->id );
+      *sPtr = ( *sPtr )->nextPtr; 
+      
+      if(*sPtr!=NULL)
+      {
+         (*sPtr)->pPtr=NULL;
+      }
+      free( tempPtr ); 
+      
+      currentPtr = *sPtr;
+
+      
+      while ( currentPtr != NULL ) 
+      {
+         printf( "delete %d\n",currentPtr->id );
+         tempPtr = currentPtr;
+         currentPtr= currentPtr->nextPtr;
+         free( tempPtr );
+      }   
+      
+}
